@@ -1,0 +1,26 @@
+// https://app.codility.com/demo/results/trainingJFJ69E-8PS/
+int solution(vector<int> &A) { 
+    // write your code in C++14 (g++ 6.2.0)
+    
+    int sum =0;
+    int rSum =0; 
+    int lSum =0;
+    int min;
+    for(int i =0; i < A.size(); i++){
+        sum += A[i];
+    }
+    
+    for(int i = 0; i < A.size()-1; i++){
+        lSum += A[i];
+        rSum = sum - lSum;
+        if(i == 0 ){
+            min = abs(lSum - rSum);
+            continue;
+        }
+        if(min > abs(lSum-rSum) ){
+            min = abs(lSum-rSum);
+        }
+    }
+    
+    return min;
+}

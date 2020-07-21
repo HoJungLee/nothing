@@ -1,0 +1,26 @@
+// https://app.codility.com/demo/results/trainingBUZYWJ-CH4/
+
+vector<int> solution(vector<int> &A, int K) {
+    // write your code in C++14 (g++ 6.2.0)
+    int size = A.size();
+    
+    if(size>0){
+        size--;
+    }else{
+        return A;
+    }
+    for(int i = 0; i < K ; i++){
+        
+        int temp = A[size];
+        
+        for(int j = size; j>0; j--){
+            A[j]=A[j-1];
+        }
+        
+        A[0] = temp;
+        
+    }
+    
+    return A;
+    
+}

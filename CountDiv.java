@@ -1,3 +1,5 @@
+// https://app.codility.com/demo/results/training3QYG3E-B5J/
+
 class Solution {
     public int solution(int A, int B, int K) {
         // write your code in Java SE 8

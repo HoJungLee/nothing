@@ -1,0 +1,51 @@
+// https://app.codility.com/demo/results/trainingT7S9RK-JUB/
+// you can also use imports, for example:
+ import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int solution(int[] A) {
+        // write your code in Java SE 8
+        int answer;
+        int max1,max2,max3;
+        int min1,min2,min3;
+        int i;
+
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>();
+        PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>( Collections.reverseOrder() );
+
+        if( A.length == 3){
+            return A[0] * A[1] *A[2];
+        }
+
+        for(i =0; i < A.length;i++){
+            maxHeap.add(A[i]);
+            minHeap.add(A[i]);
+
+            if( i >= 3){
+                maxHeap.poll();
+                minHeap.poll();
+            }
+        }
+
+        max1 = maxHeap.poll();
+        max2 = maxHeap.poll();
+        max3 = maxHeap.poll();
+
+        min1 = minHeap.poll();
+        min2 = minHeap.poll();
+        min3 = minHeap.poll();
+
+        answer = max1 * max2 * max3;
+        i = min3 * min2 * max3;
+        if( answer < i ){
+            answer = i;
+        }
+        
+        return answer;
+
+    }
+}
+

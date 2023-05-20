@@ -1,0 +1,73 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int n) {
+        int[] answer;
+        
+        int[] map = new int[n*n];
+        
+        Arrays.fill( map , 0);
+        
+        int count = 0;
+        
+        int x = 0;
+        int y = 0;
+        
+        int direction = 0;
+        
+        map[place(x,y,n)] = ++count;
+        
+        int beforeCount = count;
+        
+        while(true){  
+            // 아래로 진행
+            while( direction == 0 ){
+                if( y+1 == n || map[place(x,y+1,n)] != 0){
+                    direction = 1;  
+                }else{
+                    map[place(x,++y,n)] = ++count;
+                }
+            }
+            
+            // 오른쪽으로 진행
+            while( direction == 1 ){
+                if( x+1 == n || map[place(x+1,y,n)] != 0){
+                    direction = 2;  
+                }else{
+                    map[place(++x,y,n)] = ++count;
+                }
+                
+            }
+            
+            // 대각선으로 진행 
+            while( direction == 2 ){
+                if( y-1 >=0 && map[place(x-1,y-1,n) ] == 0 ){
+                    map[place(--x,--y,n)] = ++count;
+                }else{
+                   direction = 0;   
+                }
+            }
+            
+            if( beforeCount == count ){
+                    break;
+            }else{
+               beforeCount = count; 
+            }
+        }
+        
+        answer = new int[count];
+        int k =0;
+        
+        for( int i = 0 ; i < n ; i++ ){
+            for( int j = 0; j <= i; j++){
+                answer[k++] =  map[place(j , i , n)];
+            }
+        }
+ 
+        return answer;
+    }
+    
+    private int place( int x, int y , int n ){
+        return n * y + x;
+    }
+}

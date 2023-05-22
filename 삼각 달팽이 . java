@@ -30,8 +30,9 @@ class Solution {
             }
             
             // 오른쪽으로 진행
+            // 조건을 잘 살피자
             while( direction == 1 ){
-                if( x+1 == n || map[place(x+1,y,n)] != 0){
+                if( x+1 > y || map[place(x+1,y,n)] != 0){
                     direction = 2;  
                 }else{
                     map[place(++x,y,n)] = ++count;
